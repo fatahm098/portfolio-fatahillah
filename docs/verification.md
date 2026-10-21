@@ -108,11 +108,13 @@ viewport 1440×900, disimpan sebagai PNG di `public/projects/`.
 | RobloxOps | `apps/web` (monorepo) dijalankan dengan env Supabase dikosongkan → mode demo, halaman `/today` | `robloxops.png` |
 | Construction Change Intelligence | backend FastAPI (`.venv`) + frontend Next di port 3000 (origin CORS), halaman `/change-intel` dengan run analisis proyek 1 | `construction-change-intelligence.png` |
 | Sate Taichan SSJ | Next + SQLite lokal, login seed `admin`, halaman `/admin` | `sate-taichan-ssj.png` |
-| Facial Expression Classification | — | masih placeholder |
+| Facial Expression Classification | `D:\download\pui\pui` — backend FastAPI (`.venv`, model DeiT dimuat) + frontend Next di port 3000, halaman upload | `facial-expression-classification.png` |
 
 Catatan:
 - RobloxOps di `Projects/robloxops/app` tidak bisa dirender: `dashboard/page.tsx`
   baris 613 berisi teks `(<4,000 max)` yang merusak parsing JSX (error 500).
   Versi monorepo di `Documents/robloxops` dipakai karena bisa dijalankan.
-- Facial Expression hanya ada sebagai skrip training Colab (`fer_deit_fixed.py`)
-  dan bobot `best_emotion_model.pth`; tidak ada antarmuka web di laptop ini.
+- Facial Expression punya UI web di `D:\download\pui\pui` (bukan `pui web`).
+  Screenshot diambil pada tab "Upload Image" karena kamera headless hanya
+  menghasilkan test pattern Chrome; hasil prediksi butuh foto wajah dan tidak
+  dipakai agar tidak memuat foto pribadi.

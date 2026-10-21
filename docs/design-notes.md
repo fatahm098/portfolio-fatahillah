@@ -95,7 +95,7 @@ is the only light palette available and is what the light theme here is built fr
    fake metrics (`14 ORDERS`, `+38.4m³`, `88.4%`, `LATENCY: 18ms`), an availability badge and a
    contact form. All of it is outside the allowed content, so:
    - metrics/terminal canvases → replaced by browser frames holding real app screenshots
-     (three projects) or a placeholder for the one without a UI;
+     of all four projects;
    - "How I Work" → replaced by a **Stack** section built only from the tech lists of the four
      projects;
    - bio → one sentence assembled from the given education + tagline;

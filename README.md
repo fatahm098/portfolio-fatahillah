@@ -43,7 +43,7 @@ contact: {
 - **Tombol repository** muncul hanya jika `repoUrl` diisi. **Tombol “Live demo”**
   muncul hanya jika `demoUrl` diisi — saat ini semua `demoUrl` kosong, jadi tidak
   ada tombol demo yang dirender.
-- **Tangkapan layar** — tiga proyek memakai screenshot asli dari aplikasi yang
+- **Tangkapan layar** — keempat proyek memakai screenshot asli dari aplikasi yang
   dijalankan lokal (`public/projects/*.png`, dirender lewat `next/image` di dalam
   bingkai browser). Proyek tanpa `image` otomatis memakai placeholder
   “Preview pending”. Untuk menambah gambar: taruh PNG 1440×900 di

@@ -170,8 +170,12 @@ export const site = {
       summary: "Seven-class facial expression classification with DeiT.",
       stack: ["Python", "PyTorch", "FastAPI"],
       demoUrl: "",
-      previewPath: "facial-expression / inference",
+      previewPath: "emotion-recognition / upload",
       previewAlt: "Facial Expression Classification inference preview, screenshot pending",
+      image: {
+        src: "/projects/facial-expression-classification.png",
+        alt: "Emotion Recognition web app with upload, camera and real-time modes, powered by the DeiT model.",
+      },
       featured: false,
     },
   ] as readonly Project[],
