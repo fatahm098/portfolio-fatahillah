@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { BrowserFrame } from "@/components/browser-frame";
+import { PreviewPlaceholder } from "@/components/preview-placeholder";
 import { CodeIcon, ExternalLinkIcon } from "@/components/icons";
 import type { Project } from "@/content/site";
 import { cx } from "@/lib/cx";
@@ -23,13 +25,24 @@ export function ProjectCard({ project, labels }: ProjectCardProps) {
       className="group flex flex-col overflow-hidden rounded-card border border-line/40 bg-surface-low transition-colors duration-150 hover:border-accent/50"
       id={`project-${project.slug}`}
     >
-      <BrowserFrame
-        alt={project.previewAlt}
-        compact={!featured}
-        label={labels.previewLabel}
-        note={labels.previewNote}
-        path={project.previewPath}
-      />
+      <BrowserFrame compact={!featured} path={project.previewPath}>
+        {project.image ? (
+          <Image
+            alt={project.image.alt}
+            className="object-cover object-top"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            src={project.image.src}
+          />
+        ) : (
+          <PreviewPlaceholder
+            alt={project.previewAlt}
+            compact={!featured}
+            label={labels.previewLabel}
+            note={labels.previewNote}
+          />
+        )}
+      </BrowserFrame>
 
       <div
         className={cx(

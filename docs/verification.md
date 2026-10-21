@@ -54,19 +54,25 @@ Dijalankan dengan Chromium headless terhadap build produksi.
 
 | Kategori | Mobile (run 1) | Mobile (run 2) | Desktop |
 | --- | --- | --- | --- |
-| Performance | **87** | 83 | **98** |
+| Performance | **78** | 81 | **99** |
 | Accessibility | 100 | 100 | 100 |
 | Best Practices | 100 | 100 | 100 |
 | SEO | 100 | 100 | 100 |
 
-Metrik mobile run 1: FCP 1.6 s · LCP 2.5 s · TBT 380 ms · CLS 0 · Speed Index 2.0 s ·
-total 190 KiB.
+Metrik mobile: FCP 1.4–1.5 s · LCP 3.0–3.2 s · TBT 480–540 ms · CLS 0.027–0.048 ·
+total 247 KiB. Desktop: FCP 0.4 s · LCP 0.7 s · TBT 70 ms · CLS 0.
+
+LCP mobile adalah paragraf hero yang menunggu unduhan font Geist (29 KB) pada
+throttling 4G; `next/font` tidak mengeluarkan `<link rel=preload as=font>` pada
+build ini sehingga font baru selesai sekitar 3 s. Percobaan `display: optional`
+dan mematikan preload font mono tidak memperbaiki skor (diukur ulang, hasil lebih
+rendah), jadi `display: swap` dipertahankan demi ketepatan tipografi.
 
 Sisa peluang yang tidak diperbaiki (bawaan framework, bukan markup):
-`unused-javascript` 42 KiB dan `legacy-javascript` 11 KiB berasal dari runtime
+`unused-javascript` 22 KiB dan `legacy-javascript` 11 KiB berasal dari runtime
 React/Next yang diperlukan untuk tiga pulau klien kecil (menu, tema, tombol
 salin). TBT mobile adalah biaya hidrasi React pada throttling 4× CPU; halaman
-sudah statis penuh dan tidak memuat gambar.
+sudah statis penuh.
 
 ## 6. Pemeriksaan manual (Playwright)
 
@@ -91,3 +97,22 @@ Sitemap: https://fatahillah-muhammad.vercel.app/sitemap.xml
 $ curl -s -o /dev/null -w "%{http_code} %{content_type} %{size_download}"
 200 image/png 40403
 ```
+
+## 8. Screenshot proyek
+
+Diambil dari aplikasi asli yang dijalankan lokal, bukan mockup. Semua pada
+viewport 1440×900, disimpan sebagai PNG di `public/projects/`.
+
+| Proyek | Cara mengambil | Berkas |
+| --- | --- | --- |
+| RobloxOps | `apps/web` (monorepo) dijalankan dengan env Supabase dikosongkan → mode demo, halaman `/today` | `robloxops.png` |
+| Construction Change Intelligence | backend FastAPI (`.venv`) + frontend Next di port 3000 (origin CORS), halaman `/change-intel` dengan run analisis proyek 1 | `construction-change-intelligence.png` |
+| Sate Taichan SSJ | Next + SQLite lokal, login seed `admin`, halaman `/admin` | `sate-taichan-ssj.png` |
+| Facial Expression Classification | — | masih placeholder |
+
+Catatan:
+- RobloxOps di `Projects/robloxops/app` tidak bisa dirender: `dashboard/page.tsx`
+  baris 613 berisi teks `(<4,000 max)` yang merusak parsing JSX (error 500).
+  Versi monorepo di `Documents/robloxops` dipakai karena bisa dijalankan.
+- Facial Expression hanya ada sebagai skrip training Colab (`fer_deit_fixed.py`)
+  dan bobot `best_emotion_model.pth`; tidak ada antarmuka web di laptop ini.

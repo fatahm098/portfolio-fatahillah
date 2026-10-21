@@ -43,10 +43,11 @@ contact: {
 - **Tombol repository** muncul hanya jika `repoUrl` diisi. **Tombol “Live demo”**
   muncul hanya jika `demoUrl` diisi — saat ini semua `demoUrl` kosong, jadi tidak
   ada tombol demo yang dirender.
-- **Tangkapan layar** — selama belum ada gambar asli, tiap kartu memakai bingkai
-  browser dengan label “Preview pending”. Setelah screenshot tersedia, ganti isi
-  `src/components/browser-frame.tsx` dengan `next/image` dan isi `previewAlt`
-  sebagai alt text.
+- **Tangkapan layar** — tiga proyek memakai screenshot asli dari aplikasi yang
+  dijalankan lokal (`public/projects/*.png`, dirender lewat `next/image` di dalam
+  bingkai browser). Proyek tanpa `image` otomatis memakai placeholder
+  “Preview pending”. Untuk menambah gambar: taruh PNG 1440×900 di
+  `public/projects/`, lalu isi `image: { src, alt }` pada proyek di `site.ts`.
 - **Stack** — `stackGroups` adalah ringkasan teknologi dari proyek; ubah bila
   daftar teknologi proyek berubah.
 - **Navigasi** — `nav` mengatur tautan header (desktop dan mobile).
@@ -125,17 +126,21 @@ Hasil audit terakhir (build produksi, Lighthouse 12.8.2):
 
 | Kategori | Mobile | Desktop |
 | --- | --- | --- |
-| Performance | 87 | 98 |
+| Performance | 78–81 | 99 |
 | Accessibility | 100 | 100 |
 | Best Practices | 100 | 100 |
 | SEO | 100 | 100 |
+
+Mobile LCP 3.0–3.2 s: elemen LCP adalah paragraf hero yang menunggu unduhan font
+Geist (29 KB) pada throttling 4G. Desktop LCP 0.7 s.
 
 - axe-core (WCAG 2.1 A/AA + best practice): 0 pelanggaran pada tema gelap,
   tema terang, dan mobile dengan menu terbuka.
 - Kontras teks memenuhi 4.5:1; fokus keyboard memakai outline 2px; ada skip link;
   `prefers-reduced-motion` mematikan animasi.
-- Tanpa gambar raster di halaman, sehingga CLS 0 dan tidak ada layout shift dari
-  media.
+- Screenshot proyek memakai `next/image` (WebP, ukuran responsif) dengan
+  tinggi tetap, sehingga tidak menambah layout shift; CLS 0.03–0.05 berasal dari
+  font swap.
 
 ## Perbedaan dari desain Stitch
 
@@ -146,7 +151,8 @@ Rincian lengkap ada di `docs/design-notes.md`. Ringkasnya:
 2. Bagian “How I Work” dihapus karena isinya bukan konten yang diizinkan, dan
    diganti bagian **Stack** yang hanya merangkum teknologi dari keempat proyek.
 3. Semua angka/metrik palsu di mockup (`14 ORDERS`, `+38.4m³`, `88.4%`,
-   `LATENCY: 18ms`) dihapus; kartu memakai placeholder bingkai browser.
+   `LATENCY: 18ms`) dihapus; kartu memakai screenshot asli aplikasi di dalam bingkai
+   browser, dan placeholder hanya untuk proyek yang belum punya tangkapan layar.
 4. Form kontak diganti kartu email + GitHub (mailto), sesuai brief.
 5. Ikon Material Symbols diganti SVG inline, dan logo raster diganti monogram
    tipografis `FM` agar tidak ada permintaan ke pihak ketiga.

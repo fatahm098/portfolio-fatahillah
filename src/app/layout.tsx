@@ -13,6 +13,9 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
   display: "swap",
+  // Mono is only used for small labels; keep it off the preload path so the
+  // body face (LCP text) gets the bandwidth first.
+  preload: false,
 });
 
 const siteUrl =

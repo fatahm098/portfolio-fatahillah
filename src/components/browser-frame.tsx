@@ -1,24 +1,18 @@
+import type { ReactNode } from "react";
 import { cx } from "@/lib/cx";
 
 type BrowserFrameProps = {
   path: string;
-  alt: string;
-  label: string;
-  note: string;
   compact?: boolean;
+  children: ReactNode;
 };
 
 /**
- * Browser chrome with a placeholder canvas — used until real project
- * screenshots exist. No fabricated metrics or mock data inside.
+ * Browser chrome used for every project preview. The body is a fixed-height
+ * canvas so cards keep a consistent rhythm whether they hold a screenshot or
+ * the "preview pending" placeholder.
  */
-export function BrowserFrame({
-  path,
-  alt,
-  label,
-  note,
-  compact = false,
-}: BrowserFrameProps) {
+export function BrowserFrame({ path, compact = false, children }: BrowserFrameProps) {
   return (
     <div className="border-b border-line/30 bg-surface-lowest">
       <div
@@ -59,36 +53,12 @@ export function BrowserFrame({
       </div>
 
       <div
-        aria-label={alt}
         className={cx(
-          "blueprint-grid relative flex items-center justify-center bg-surface-lowest",
+          "relative overflow-hidden bg-surface-lowest",
           compact ? "h-[132px]" : "h-[204px]",
         )}
-        role="img"
       >
-        <div
-          className={cx(
-            "flex flex-col items-center gap-1 border border-dashed border-line/70 bg-surface-lowest/85 text-center backdrop-blur-[1px]",
-            compact ? "px-3 py-2" : "px-4 py-3",
-          )}
-        >
-          <span
-            className={cx(
-              "font-mono uppercase tracking-[0.14em] text-accent",
-              compact ? "text-[10px]" : "text-label-sm",
-            )}
-          >
-            {label}
-          </span>
-          <span
-            className={cx(
-              "font-mono text-ink-faint",
-              compact ? "text-[9px]" : "text-[10px]",
-            )}
-          >
-            {note}
-          </span>
-        </div>
+        {children}
       </div>
     </div>
   );

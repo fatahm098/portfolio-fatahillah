@@ -17,6 +17,8 @@ export type Project = {
   previewPath: string;
   /** Accessible description of the placeholder preview. */
   previewAlt: string;
+  /** Real screenshot, rendered inside the browser frame when present. */
+  image?: { src: string; alt: string };
   /** Featured projects use the large card layout. */
   featured: boolean;
 };
@@ -123,8 +125,12 @@ export const site = {
       ],
       repoUrl: "https://github.com/fatahm098/robloxops",
       demoUrl: "",
-      previewPath: "robloxops / dashboard",
+      previewPath: "robloxops / today",
       previewAlt: "RobloxOps order dashboard preview, screenshot pending",
+      image: {
+        src: "/projects/robloxops.png",
+        alt: "RobloxOps dashboard for Apex UGC Studio showing active projects, client revisions and the task queue.",
+      },
       featured: true,
     },
     {
@@ -136,8 +142,12 @@ export const site = {
       repoUrl:
         "https://github.com/fatahm098/construction-change-intelligence",
       demoUrl: "",
-      previewPath: "change-intelligence / diff",
+      previewPath: "margin-guardian / change-intel",
       previewAlt: "Construction Change Intelligence drawing diff preview, screenshot pending",
+      image: {
+        src: "/projects/construction-change-intelligence.png",
+        alt: "Construction Change Intelligence workspace comparing two drawing revisions, with a verified column region and the resulting BOQ cost delta.",
+      },
       featured: true,
     },
     {
@@ -146,8 +156,12 @@ export const site = {
       summary: "Web app for ordering, cashier, and kitchen workflows.",
       stack: ["Next.js", "Prisma", "Supabase"],
       demoUrl: "",
-      previewPath: "sate-taichan-ssj / kds",
+      previewPath: "sate-taichan-ssj / admin",
       previewAlt: "Sate Taichan SSJ kitchen display preview, screenshot pending",
+      image: {
+        src: "/projects/sate-taichan-ssj.png",
+        alt: "Sate Taichan SSJ admin panel with daily revenue, best-selling menu items and staff accounts.",
+      },
       featured: false,
     },
     {
