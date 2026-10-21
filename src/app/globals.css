@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Semantic colour tokens.
+   Dark values come from the Stitch export; light values come from the light
+   palette in the Stitch technical blueprint (see docs/design-notes.md).
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  --c-canvas: #ffffff;
+  --c-surface-lowest: #ffffff;
+  --c-surface-low: #f6f8fa;
+  --c-surface: #eaeef2;
+  --c-surface-high: #e2e7ec;
+  --c-surface-highest: #d8dee4;
+
+  --c-ink: #1f2328;
+  --c-ink-soft: #57606a;
+  --c-ink-faint: #5c6570;
+  --c-line: #d0d7de;
+
+  --c-heading: #1f2328;
+  --c-accent: #0e7490;
+  --c-accent-hover: #155e75;
+  --c-accent-ink: #ffffff;
+  --c-live: #0d9488;
+  --c-danger: #b42318;
+
+  --c-grid: rgba(31, 35, 40, 0.08);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --c-canvas: #10141a;
+  --c-surface-lowest: #0a0e14;
+  --c-surface-low: #181c22;
+  --c-surface: #1c2026;
+  --c-surface-high: #262a31;
+  --c-surface-highest: #31353c;
+
+  --c-ink: #dfe2eb;
+  --c-ink-soft: #b9cacb;
+  --c-ink-faint: #849495;
+  --c-line: #3b494b;
+
+  --c-heading: #dbfcff;
+  --c-accent: #00f0ff;
+  --c-accent-hover: #7df4ff;
+  --c-accent-ink: #00363a;
+  --c-live: #4fdbc8;
+  --c-danger: #ffb4ab;
+
+  --c-grid: rgba(132, 148, 149, 0.14);
+}
+
+@theme inline {
+  --color-canvas: var(--c-canvas);
+  --color-surface-lowest: var(--c-surface-lowest);
+  --color-surface-low: var(--c-surface-low);
+  --color-surface: var(--c-surface);
+  --color-surface-high: var(--c-surface-high);
+  --color-surface-highest: var(--c-surface-highest);
+
+  --color-ink: var(--c-ink);
+  --color-ink-soft: var(--c-ink-soft);
+  --color-ink-faint: var(--c-ink-faint);
+  --color-line: var(--c-line);
+
+  --color-heading: var(--c-heading);
+  --color-accent: var(--c-accent);
+  --color-accent-hover: var(--c-accent-hover);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-live: var(--c-live);
+  --color-danger: var(--c-danger);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular",
+    monospace;
+}
+
+@theme {
+  /* Type scale — mirrors the Stitch typography tokens. */
+  --text-display-xl: 3.5rem;
+  --text-display-xl--line-height: 4rem;
+  --text-display-xl--letter-spacing: -0.03em;
+
+  --text-headline-lg: 2rem;
+  --text-headline-lg--line-height: 2.5rem;
+  --text-headline-lg--letter-spacing: -0.02em;
+
+  --text-headline-md: 1.5rem;
+  --text-headline-md--line-height: 2rem;
+  --text-headline-md--letter-spacing: -0.015em;
+
+  --text-headline-sm: 1.125rem;
+  --text-headline-sm--line-height: 1.625rem;
+  --text-headline-sm--letter-spacing: -0.01em;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-body-lg--letter-spacing: -0.005em;
+
+  --text-body-md: 0.9375rem;
+  --text-body-md--line-height: 1.5rem;
+
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.25rem;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-label--letter-spacing: 0.04em;
+
+  --text-label-sm: 0.6875rem;
+  --text-label-sm--line-height: 0.875rem;
+  --text-label-sm--letter-spacing: 0.06em;
+
+  --text-code: 0.8125rem;
+  --text-code--line-height: 1.375rem;
+
+  /* Radii — Stitch uses 2px controls, 4px containers, 8px frames. */
+  --radius-btn: 0.125rem;
+  --radius-card: 0.25rem;
+  --radius-frame: 0.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--c-canvas);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--c-accent);
+    color: var(--c-accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 2px;
+    border-radius: 1px;
+  }
+
+  /* Tabular figures for anything numeric, per the blueprint. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* Fine grid used by the browser-frame placeholders. */
+  .blueprint-grid {
+    background-image: linear-gradient(
+        to right,
+        var(--c-grid) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, var(--c-grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
