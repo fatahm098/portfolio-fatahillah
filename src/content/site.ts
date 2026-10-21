@@ -193,5 +193,3 @@ export const site = {
     signature: "> sys.arch //",
   },
 } as const;
-
-export type SiteContent = typeof site;

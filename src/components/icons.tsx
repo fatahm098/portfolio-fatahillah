@@ -132,10 +132,3 @@ export function BriefcaseIcon(props: IconProps) {
   );
 }
 
-export function TerminalIcon(props: IconProps) {
-  return (
-    <Svg {...props}>
-      <path d="m5 7 4 4-4 4M12 16h7" />
-    </Svg>
-  );
-}

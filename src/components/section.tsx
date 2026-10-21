@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Container } from "@/components/container";
-import { cx } from "@/lib/cx";
 
 export function Section({
   id,
@@ -8,25 +7,17 @@ export function Section({
   title,
   description,
   children,
-  className,
-  bordered = true,
 }: {
   id: string;
   index: string;
   title: string;
-  description?: string;
+  description: string;
   children: ReactNode;
-  className?: string;
-  bordered?: boolean;
 }) {
   return (
     <section
       aria-labelledby={`${id}-title`}
-      className={cx(
-        "py-10 md:py-14",
-        bordered && "border-t border-line/40",
-        className,
-      )}
+      className="border-t border-line/40 py-10 md:py-14"
       id={id}
     >
       <Container>
@@ -38,11 +29,7 @@ export function Section({
             >
               {`${index} // ${title}`}
             </h2>
-            {description ? (
-              <p className="max-w-2xl text-body-md text-ink-soft">
-                {description}
-              </p>
-            ) : null}
+            <p className="max-w-2xl text-body-md text-ink-soft">{description}</p>
           </div>
           {children}
         </div>
