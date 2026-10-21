@@ -53,6 +53,8 @@ export const site = {
     emailHref: "mailto:mfatahillah995@gmail.com",
     githubHandle: "github.com/fatahm098",
     githubUrl: "https://github.com/fatahm098",
+    whatsapp: "+62 895-2636-2616",
+    whatsappHref: "https://wa.me/6289526362616",
   },
 
   nav: [
@@ -76,6 +78,8 @@ export const site = {
     theme: "Switch theme",
     skipToContent: "Skip to content",
     emailLabel: "Email",
+    whatsappLabel: "WhatsApp",
+    whatsappMe: "Chat on WhatsApp",
     githubLabel: "GitHub",
     mailNote: "Opens your default mail app.",
     stackLabel: "Stack",
@@ -105,7 +109,7 @@ export const site = {
     contact: {
       index: "04",
       title: "Get in touch",
-      description: "Email or GitHub — no form.",
+      description: "Email, WhatsApp, or GitHub — no form.",
     },
   },
 
