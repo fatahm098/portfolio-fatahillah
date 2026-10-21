@@ -21,6 +21,7 @@ export function ProjectsSection() {
               demo: site.actions.demo,
               previewLabel: site.actions.previewPending,
               previewNote: site.actions.previewNote,
+              stackLabel: site.actions.stackLabel,
             }}
             project={project}
           />

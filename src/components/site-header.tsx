@@ -47,7 +47,10 @@ export function SiteHeader() {
             </span>
           </a>
 
-          <nav aria-label="Primary" className="hidden items-center gap-6 lg:flex">
+          <nav
+            aria-label={site.actions.navPrimary}
+            className="hidden items-center gap-6 lg:flex"
+          >
             {site.nav.map((item) => (
               <a
                 className="text-body-sm text-ink-soft transition-colors hover:text-ink"
@@ -81,7 +84,10 @@ export function SiteHeader() {
         id="mobile-nav"
       >
         <Container>
-          <nav aria-label="Mobile" className="flex flex-col py-2">
+          <nav
+            aria-label={site.actions.navMobile}
+            className="flex flex-col py-2"
+          >
             {site.nav.map((item) => (
               <a
                 className="rounded-btn px-2 py-3 text-body-md text-ink-soft transition-colors hover:bg-surface hover:text-ink"

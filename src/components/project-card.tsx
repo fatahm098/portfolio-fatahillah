@@ -10,6 +10,7 @@ type ProjectCardProps = {
     demo: string;
     previewLabel: string;
     previewNote: string;
+    stackLabel: string;
   };
 };
 
@@ -55,7 +56,7 @@ export function ProjectCard({ project, labels }: ProjectCardProps) {
           </p>
 
           <ul
-            aria-label={`${project.name} stack`}
+            aria-label={`${project.name} — ${labels.stackLabel}`}
             className={cx("flex flex-wrap", featured ? "mt-4 gap-1.5" : "mt-3 gap-1")}
           >
             {project.stack.map((item) => (
